@@ -3,26 +3,16 @@ package Servlet;
 public class UserBean {
 	private String username;
 	private String password;
-	private String firstName;
-	private String lastName;
+	private String name;
 	public boolean valid;
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-    public void setFirstName(String newFirstName) {
-       firstName = newFirstName;
+    public void setFirstName(String newName) {
+       name = newName;
 	}
-
-	
-    public String getLastName() {
-    	return lastName;
-	}
-
-    public void setLastName(String newLastName) {
-         lastName = newLastName;
-	}		
 
     public String getPassword() {
          return password;

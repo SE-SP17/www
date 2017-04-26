@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body{
+	background: #34C03D;
+	font-family: 'Lato', sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+#registerForm{
+	width: 400px;
+	margin: auto;
+	padding: 80px;
+	background: #81E287;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#registerForm input{
+	width: 100%;
+	margin: 0 0 20px;
+	padding: 5px;
+}

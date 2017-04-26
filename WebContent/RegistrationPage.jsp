@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
     
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -9,19 +10,25 @@
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Login Page</title>
+		<link href="./css/registerStyle.css" rel="stylesheet" type="text/css">
 	</head>
 
 	<body>
-		<form action="RegistrationServlet" method="post">
+		<h1>Set Game Registration</h1>
+		<div id="registerForm">
+			<p>${message}</p>
+			<c:remove var="message" scope="session" /> 
+			<form action="RegistrationServlet" method="post">
+				
+				<input type="text" name="name" placeholder="your name"/>
+				
+				<input type="text" name="username" placeholder="username"/>	
+				
+				<input type="password" name="password" placeholder="password"/>
+				
+				<input type="submit" value="Sign me up!">			
+			</form>
+		</div>
 		
-			Please enter a username		
-			<input type="text" name="username"/><br>		
-		
-			Please enter a password
-			<input type="text" name="password"/>
-			
-			<input type="submit" value="submit">			
-		
-		</form>
 	</body>
 </html>

@@ -28,12 +28,17 @@ public class RegistrationServlet extends HttpServlet {
 				System.out.println("Registered");
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
+				request.removeAttribute("message");
 				response.sendRedirect("Success.jsp"); // logged-in page
 			}
 
 			else {
 				System.out.println("Registration failed");
-				response.sendRedirect("RegistrationPage.jsp"); // error page
+				request.getSession().setAttribute("message", "Registration failed - this username is taken");
+				response.sendRedirect("RegistrationPage.jsp"); 
+				
+//				request.setAttribute("message", "Registration failed - this username is taken");
+//				request.getRequestDispatcher("/RegistrationPage.jsp").forward(request, response);
 			}
 		}
 
