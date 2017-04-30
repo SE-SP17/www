@@ -9,7 +9,7 @@ h1 {
 	text-align: center;
 }
 
-#registerForm{
+.form{
 	width: 400px;
 	margin: auto;
 	padding: 80px;
@@ -18,8 +18,21 @@ h1 {
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-#registerForm input{
+#loginForm {
+	display: none;
+}
+
+.form input{
 	width: 100%;
 	margin: 0 0 20px;
 	padding: 5px;
+}
+
+#switch{
+	text-color: blue;
+	
+}
+
+#message{
+	color:red;
 }

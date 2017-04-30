@@ -12,17 +12,21 @@
       <head>
          <meta http-equiv="Content-Type" 
             content="text/html; charset=ISO-8859-1">
-         <title>   User Created Successfully   </title>
+         <title>   Welcome  </title>
          <link href="./css/registerStyle.css" rel="stylesheet" type="text/css">
       </head>
 	
       <body>
 
          <h1>
-            <% 
-            UserBean currentUser = ((UserBean) (session.getAttribute("currentSessionUser")));%>
-			
-            Welcome <%= currentUser.getUsername() %>
+            <c:if test="${currentSessionUser!=null}"> 
+	           <%  UserBean currentUser = ((UserBean) (session.getAttribute("currentSessionUser")));%>
+				
+	            	Welcome <%= currentUser.getUsername() %>
+            </c:if>
+            <c:if test="${currentSessionUser==null}"> 
+	           <p>Please <a href="/Registration">click here</a> to login or register first </p>
+            </c:if>
         </h1>
 
       </body>

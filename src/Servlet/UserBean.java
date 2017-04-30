@@ -10,7 +10,7 @@ public class UserBean {
 		return name;
 	}
 
-    public void setFirstName(String newName) {
+    public void setName(String newName) {
        name = newName;
 	}
 

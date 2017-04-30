@@ -7,15 +7,17 @@ public class ConnectionManager {
 
 	static Connection con;
 	static String url;
+	static String database="set";
+	static String table="Players";
 
 	public static Connection getConnection() {
 
 		try {
-			String url = "jdbc:mysql:"+ "//localhost:3306/set";
+			url ="jdbc:mysql://localhost:3306/"+database;
 			String username = "root";
 			String password = "sable";
+			
 			String driver = "com.mysql.jdbc.Driver";
-
 			Class.forName(driver);
 
 			try {
@@ -32,6 +34,9 @@ public class ConnectionManager {
 		}
 
 		return con;
+	}
+	public static String getTable(){
+		return table;
 	}
 
 }
