@@ -25,7 +25,7 @@ public class UserDAO {
 			// check if user exists
 			con = ConnectionManager.getConnection();
 			String table = ConnectionManager.getTable();
-			ps = con.prepareStatement("SELECT * from "+table+ "where username=?");
+			ps = con.prepareStatement("SELECT * from "+table+ " where username=?");
 
 			ps.setString(1, bean.getUsername());
 
