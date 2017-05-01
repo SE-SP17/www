@@ -1,4 +1,4 @@
-package Servlet;
+package servlet;
 
 import java.sql.*;
 
@@ -25,7 +25,7 @@ public class UserDAO {
 			// check if user exists
 			con = ConnectionManager.getConnection();
 			String table = ConnectionManager.getTable();
-			ps = con.prepareStatement("SELECT * from "+table+ " where username=?");
+			ps = con.prepareStatement("SELECT * from " + table + " where username=?");
 
 			ps.setString(1, bean.getUsername());
 
@@ -36,9 +36,10 @@ public class UserDAO {
 			if (!more) {
 				System.out.println("Adding user...");
 				PreparedStatement entry = con
-						.prepareStatement("INSERT INTO "+table+" (username, password)" + "VALUES(?, MD5(?));");
+						.prepareStatement("INSERT INTO " + table + " (username, password)" + "VALUES(?, MD5(?));");
 				entry.setString(1, bean.getUsername());
-//				entry.setString(2, BCrypt.hashpw(bean.getPassword(), BCrypt.gensalt(9)));
+				// entry.setString(2, BCrypt.hashpw(bean.getPassword(),
+				// BCrypt.gensalt(9)));
 				entry.setString(2, bean.getPassword());
 
 				entry.executeUpdate(); // Insert new user into database
@@ -48,11 +49,12 @@ public class UserDAO {
 			// if user exists set the isValid variable to false
 			else if (more) {
 				System.out.println("Username taken");
-//				if (BCrypt.checkpw(bean.getPassword(), rs.getString("password"))) {
-//					System.out.println("Password match!");
-//				} else {
-//					System.out.println("Password does not match!");
-//				}
+				// if (BCrypt.checkpw(bean.getPassword(),
+				// rs.getString("password"))) {
+				// System.out.println("Password match!");
+				// } else {
+				// System.out.println("Password does not match!");
+				// }
 
 				bean.setValid(false);
 			}
@@ -109,7 +111,7 @@ public class UserDAO {
 			// check if user exists
 			con = ConnectionManager.getConnection();
 			String table = ConnectionManager.getTable();
-			ps = con.prepareStatement("SELECT * from "+table+" where username=? AND password=MD5(?)");
+			ps = con.prepareStatement("SELECT * from " + table + " where username=? AND password=MD5(?)");
 
 			ps.setString(1, bean.getUsername());
 			ps.setString(2, bean.getPassword());
@@ -120,17 +122,18 @@ public class UserDAO {
 			// if user does not exist set the isValid variable to false
 			if (!more) {
 				System.out.println("Incorrect username or password");
-				
+
 				bean.setValid(false);
 			}
 			// if user exists set the isValid variable to true
 			else if (more) {
 				System.out.println("Login success");
-//				if (BCrypt.checkpw(bean.getPassword(), rs.getString("password"))) {
-//					System.out.println("Password match!");
-//				} else {
-//					System.out.println("Password not match!");
-//				}
+				// if (BCrypt.checkpw(bean.getPassword(),
+				// rs.getString("password"))) {
+				// System.out.println("Password match!");
+				// } else {
+				// System.out.println("Password not match!");
+				// }
 
 				bean.setValid(true);
 			}
@@ -168,5 +171,88 @@ public class UserDAO {
 		}
 
 		return bean;
+	}
+
+	public static UserBean changePass(UserBean bean, String oldPass, String newPass) {
+		if(!bean.getPassword().equals(oldPass)) {
+			bean.setValid(false);
+			return bean;
+		}
+		
+		// preparing some objects for connection
+		PreparedStatement ps = null;
+
+		String username = bean.getUsername();
+
+		// "System.out.println" prints in the console; Normally used to trace
+		// the process
+		System.out.println("Old pass " + oldPass);
+		System.out.println("New pass " + newPass);
+
+		try {
+			
+			
+			// connect to DB
+			// check if user exists
+			con = ConnectionManager.getConnection();
+			String table = ConnectionManager.getTable();
+			ps = con.prepareStatement("UPDATE " + table + " SET password=MD5(?) WHERE username=?");
+
+			ps.setString(1, newPass);
+			ps.setString(2, username);
+
+			int numResults = ps.executeUpdate();
+
+			if (numResults == 1) {
+				System.out.println("Password change success");
+
+				bean.setValid(true);
+			}
+			else if(numResults == 0)  {
+				System.out.println("Password change failed");
+
+				bean.setValid(false);
+			}
+			else{
+				System.out.println("error - multiple passwords changed");
+				
+				bean.setValid(false);
+				
+			}
+		}
+
+		catch (Exception ex) {
+			System.out.println("Password change failed: A MYSQL connection exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+				rs = null;
+			}
+
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (Exception e) {
+				}
+				ps = null;
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+				con = null;
+			}
+		}
+
+		return bean;
+
 	}
 }

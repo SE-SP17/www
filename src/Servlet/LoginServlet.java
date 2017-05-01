@@ -1,4 +1,4 @@
-package Servlet;
+package servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,14 +28,16 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
 				request.removeAttribute("message");
+//				request.removeAttribute("page");
 				response.sendRedirect("Success.jsp");
 			}
 
 			else {
 				System.out.println("Login failed");
-				request.getSession().setAttribute("message", "Login failed - "
+				HttpSession session = request.getSession(true);
+				session.setAttribute("message", "Login failed - "
 						+ "please check your username and/or password");
-				request.getSession().setAttribute("page", "login");
+//				session.setAttribute("page", "login");
 				response.sendRedirect("RegistrationPage.jsp"); 
 				
 //				request.setAttribute("message", "Registration failed - this username is taken");

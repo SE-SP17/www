@@ -1,4 +1,4 @@
-package Servlet;
+package servlet;
 
 
 import java.sql.*;
@@ -7,14 +7,14 @@ public class ConnectionManager {
 
 	static Connection con;
 	static String url;
-	static String database="set";
-	static String table="Players";
+	static String database="set_server";
+	static String table="users";
 
 	public static Connection getConnection() {
 
 		try {
 			url ="jdbc:mysql://localhost:3306/"+database;
-			String username = "root";
+			String username = "set_server";
 			String password = "sable";
 			
 			String driver = "com.mysql.jdbc.Driver";

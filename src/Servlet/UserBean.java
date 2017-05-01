@@ -1,4 +1,4 @@
-package Servlet;
+package servlet;
 
 public class UserBean {
 	private String username;

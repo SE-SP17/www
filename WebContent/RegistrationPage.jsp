@@ -13,14 +13,19 @@
 		<link href="./css/registerStyle.css" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="./js/switch.js"></script>
+		
+		
 	</head>
 
 	<body>
 		
+		
 		<h1>Set Game Registration</h1>
 		<div id="registerForm" class="form">
+		
 			<p id="message">${message}</p>
 			<c:remove var="message" scope="session" /> 
+			
 			<form action="RegistrationServlet" method="post">
 				
 				<input type="text" name="name" placeholder="your name"/>
@@ -35,8 +40,20 @@
 		</div>
 		
 		<div id="loginForm" class="form">
+			<!--<c:if test="${page=='login'}">
+				<script>
+					//$("#registerForm").hide();
+					//$("#loginForm").show();	
+					//document.getElementById("registerForm").style.display = "none";
+					//document.getElementById("loginForm").style.display = "block";
+					
+					console.log("login failed");
+					$(document).ready( $(".form").toggle() );
+				</script>
+			</c:if>  -->
 			<p>${message}</p>
 			<c:remove var="message" scope="session" /> 
+			
 			<form action="LoginServlet" method="post">
 								
 				<input type="text" name="username" placeholder="username"/>	
@@ -47,12 +64,9 @@
 				<p>Need an account? <div class="switch">Click here</div> to register.</p>	
 			</form>
 		</div>
-		<c:if test="${page==login}">
-			<script>
-				$('.form').toggle();
-				console.log("login failed");
-			</script>
-		</c:if>
+		
+		
+		
 		
 	</body>
 </html>

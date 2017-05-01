@@ -1,5 +1,5 @@
 //http://met.guc.edu.eg/OnlineTutorials/JSP%20-%20Servlets/Full%20Login%20Example.aspx
-package Servlet;
+package servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +30,7 @@ public class RegistrationServlet extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
 				request.removeAttribute("message");
+//				request.removeAttribute("page");
 				response.sendRedirect("Success.jsp"); // logged-in page
 			}
 
@@ -37,8 +38,8 @@ public class RegistrationServlet extends HttpServlet {
 				System.out.println("Registration failed");
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", null);
-				request.getSession().setAttribute("message", "Registration failed - this username is taken");
-				request.getSession().setAttribute("page", "register");
+				session.setAttribute("message", "Registration failed - this username is taken");
+//				session.setAttribute("page", "register");
 				response.sendRedirect("RegistrationPage.jsp"); 
 				
 //				request.setAttribute("message", "Registration failed - this username is taken");
