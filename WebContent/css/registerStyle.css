@@ -27,6 +27,11 @@ p {
 #passwordForm {
 	display: none;
 }
+#download{
+	
+	margin: 0 auto;
+	margin-top: 40px;
+}
 
 .form input{
 	width: 100%;

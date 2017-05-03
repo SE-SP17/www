@@ -27,15 +27,11 @@
             	<h1>Welcome <%= currentUser.getUsername() %> </h1>
             	<p>Total wins:  </p>
             	<p>Total losses:  </p>
-            	<br/>
             	
-            	<p id="message">${message}</p>
-				<c:remove var="message" scope="session" /> 
-				
             	<p class="switch">Change password</p>
             	<div id="passwordForm" class="form">
 	            	<form action="PasswordServlet" method="post">
-		            	<input type="password" name="old" placeholder="old password"/>
+		            	<input type="password" name="current" placeholder="old password"/>
 						
 						<input type="password" name="new1" placeholder="new password"/>	
 						

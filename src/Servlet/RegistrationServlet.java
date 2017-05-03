@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;// or some long
-
+	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, java.io.IOException {
 		try {
